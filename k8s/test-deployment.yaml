@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-test
+  template:
+    metadata:
+      labels:
+        app: hello-test
+    spec:
+      volumes:
+      - name: user-pass-secret
+        secret:
+          secretName: user-pass-secret
+      containers:
+      - name: hello-test
+        image: wanchub429/test:latest
+        env:
+          - name: SECRET_TEST
+            value: "TEST1111"
+        envFrom:
+          - secretRef:
+              name: user-pass-secret
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+          - mountPath: /etc/user-pass-secret
+            name: user-pass-secret
+
