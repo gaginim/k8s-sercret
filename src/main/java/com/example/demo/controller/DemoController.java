@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
@@ -19,11 +20,13 @@ import java.io.IOException;
 @Log4j2
 @RequiredArgsConstructor
 public class DemoController {
+  @Value("${secret.test}")
+  private String envTest;
 
   @GetMapping("/{name}")
   public ResponseEntity<String> test(@PathVariable String name) {
     getKubeSecretData();
-    return new ResponseEntity<>("test ==> " + name, HttpStatus.OK);
+    return new ResponseEntity<>("test ==> " + name + ", envTest ==> " + envTest, HttpStatus.OK);
   }
 
   private void getKubeSecretData() {
