@@ -49,5 +49,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: wanchub429/test:${{ github.head_ref }}
+          tags: wanchub429/test:${{ steps.extract_version_name.outputs.version }}
 
