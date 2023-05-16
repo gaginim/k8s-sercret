@@ -1,4 +1,6 @@
 server:
   port: 8081
-secret:
-  test: ${SECRET_TEST:}
+k8s-custom:
+  test2: ${TEST2:}
+#secret:
+#  test: ${SECRET_TEST:}

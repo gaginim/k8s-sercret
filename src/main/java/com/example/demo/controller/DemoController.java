@@ -20,13 +20,28 @@ import java.io.IOException;
 @Log4j2
 @RequiredArgsConstructor
 public class DemoController {
-  @Value("${secret.test}")
-  private String envTest;
+  @Value("${SECRET_TEST:}")
+  private String k9sEnvSecret;
+
+  @Value("${TEST1:}")
+  private String originEnv;
+
+  @Value("${k8s-custom.test2}")
+  private String customEnv;
 
   @GetMapping("/{name}")
   public ResponseEntity<String> test(@PathVariable String name) {
     getKubeSecretData();
-    return new ResponseEntity<>("test ==> " + name + ", envTest ==> " + envTest, HttpStatus.OK);
+    return new ResponseEntity<>(
+        "params ==> "
+            + name
+            + ", customEnv ==> "
+            + customEnv
+            + ", originEnv ==> "
+            + originEnv
+            + ", k9sEnvSecret ==> "
+            + k9sEnvSecret,
+        HttpStatus.OK);
   }
 
   private void getKubeSecretData() {
