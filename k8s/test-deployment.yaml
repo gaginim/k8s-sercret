@@ -18,7 +18,7 @@ spec:
           secretName: user-pass-secret
       containers:
       - name: hello-test
-        image: wanchub429/test:latest
+        image: wanchub429/test:v1.0.0
         env:
           - name: SECRET_TEST
             value: "TEST1111"
