@@ -49,5 +49,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: wanchub429/test:latest
+          tags: wanchub429/test:${{ github.head_ref }}
 
