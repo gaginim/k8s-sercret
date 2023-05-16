@@ -47,5 +47,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: wanchub429/test:${{ github.run_id }}-${{ github.run_number }}
+          tags: wanchub429/test:${{ github.sha }}-${{ github.run_id }}-${{ github.run_number }}
 
