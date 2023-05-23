@@ -44,6 +44,10 @@ public class DemoController {
         HttpStatus.OK);
   }
 
+  public void test() {
+    return;
+  }
+
   private void getKubeSecretData() {
     File mountFolder = new File("/etc/user-pass-secret");
 
